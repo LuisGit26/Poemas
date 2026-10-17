@@ -8,8 +8,12 @@
   heredada si tu proyecto todavía la utiliza.
   NUNCA pongas aquí la clave service_role ni una clave secreta.
 */
-const SUPABASE_URL = "https://uexxpfgldprrkfndgudm.supabase.co/rest/v1/";
+
+const SUPABASE_URL = "https://uexxpfgldprrkfndgudm.supabase.co";
+
 const SUPABASE_PUBLIC_KEY = "sb_publishable_jnlmw7DeY4m76F7sIFzGuQ_pk-7czoi";
+
+const BUCKET_NAME = "poemas-imagenes";
 
 const BUCKET_NAME = "poemas-imagenes";
 const MAX_IMAGE_SIZE = 2 * 1024 * 1024;
