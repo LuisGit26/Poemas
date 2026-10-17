@@ -4,249 +4,202 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Una comunidad literaria para descubrir, leer y compartir poemas de nuevos autores.">
-  <meta name="theme-color" content="#173d32">
-  <title>Versos — Comunidad de Poesía</title>
+  <meta name="theme-color" content="#246b4b">
+  <meta name="description" content="Un espacio para compartir poemas, descubrir autores y expresar sentimientos con palabras.">
+  <title>Versos | Comunidad de poesía</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="estilos.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js" defer></script>
 </head>
 <body>
-  <header class="header">
-    <a href="#inicio" class="logo">
-      <span class="logo-icon">V.</span>
-      <span>versos<span class="logo-dot">.</span></span>
-    </a>
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navegación principal">
+      <a class="brand" href="#inicio"><span class="brand-icon">V.</span> Versos</a>
 
-    <button class="menu-toggle" id="menuToggle"
-      aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <button class="menu-toggle" id="menuToggle" type="button"
+        aria-label="Abrir menú" aria-expanded="false">☰</button>
 
-    <nav class="nav" id="mainNav">
-      <a href="#inicio">Inicio</a>
-      <a href="#poemas">Poemas</a>
-      <a href="#autores">Autores</a>
-      <a href="#biblioteca">Biblioteca</a>
-      <a href="#publicar" class="nav-button">Publicar un poema <span>↗</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#inicio">Inicio</a>
+        <a href="#poemas">Poemas</a>
+        <a href="#autores">Autores</a>
+        <a class="nav-cta" href="#publicar">Compartir poema</a>
+      </div>
     </nav>
   </header>
 
   <main>
     <section class="hero" id="inicio">
-      <div class="hero-content">
-        <span class="eyebrow"><span class="eyebrow-line"></span> UN LUGAR PARA LAS PALABRAS</span>
-        <h1>Hay sentimientos<br>que solo caben en <em>un poema.</em></h1>
+      <div class="hero-decoration decoration-one"></div>
+      <div class="hero-decoration decoration-two"></div>
+      <div class="container hero-content">
+        <p class="eyebrow">UN LUGAR PARA SENTIR Y ESCRIBIR</p>
+        <h1>Hay palabras que merecen <em>ser compartidas.</em></h1>
         <p class="hero-description">
-          Descubre nuevas voces, encuentra palabras que te representan
-          y comparte con el mundo aquello que nace de tu corazón.
+          Descubre nuevas voces, lee historias hechas poesía y comparte
+          esos versos que nacen de lo que sientes.
         </p>
         <div class="hero-actions">
-          <a href="#poemas" class="button button-primary">Explorar poemas ↗</a>
-          <a href="#publicar" class="button button-light">Compartir mis versos</a>
+          <a class="button button-light" href="#poemas">Leer poemas <span>↗</span></a>
+          <a class="hero-secondary" href="#publicar">Quiero publicar un poema</a>
         </div>
-        <div class="hero-note">
-          <span class="hero-note-icon">✳</span>
-          Un espacio abierto a la imaginación y la sensibilidad.
-        </div>
+        <div class="hero-note"><span class="note-dot"></span> Un espacio para todas las voces</div>
       </div>
-
-      <div class="hero-art">
-        <div class="art-glow"></div>
-        <div class="art-label">POESÍA PARA EL ALMA</div>
-        <div class="art-image">
-          <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1000&q=85"
-            alt="Luz del amanecer sobre un paisaje natural">
-        </div>
-        <div class="art-quote">
-          <span class="quote-mark">“</span>
-          <p>Las palabras también saben abrazar.</p>
-          <span class="quote-caption">UNA IDEA, MIL SENTIMIENTOS</span>
-        </div>
-        <span class="art-star star-one">✳</span>
-        <span class="art-star star-two">✧</span>
-      </div>
+      <div class="hero-side-note" aria-hidden="true">PALABRAS CON ALMA · VERSOS CON VIDA</div>
     </section>
 
-    <section class="intro-strip">
-      <div><strong>01</strong><span>Descubre nuevas voces</span></div>
-      <div><strong>02</strong><span>Conoce a cada autor</span></div>
-      <div><strong>03</strong><span>Comparte tu historia</span></div>
-    </section>
-
-    <section class="section" id="poemas">
+    <section class="section container" id="poemas">
       <div class="section-heading">
         <div>
-          <span class="eyebrow">PALABRAS QUE PERMANECEN</span>
-          <h2>Poemas para <em>sentir.</em></h2>
-          <p>Historias diferentes, emociones que nos unen.</p>
+          <p class="eyebrow">NUESTRAS LECTURAS</p>
+          <h2>Poemas para <em>sentir</em></h2>
+          <p class="section-description">Encuentra un verso que hable por ti.</p>
         </div>
-        <a href="#biblioteca" class="text-link">Explorar biblioteca ↗</a>
       </div>
 
-      <div class="filter-bar">
+      <div class="filters">
         <label class="search-box">
-          <span>⌕</span>
-          <input id="searchInput" type="search"
-            placeholder="Buscar poema o autor..." aria-label="Buscar poemas">
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="Buscar poema o autor..." aria-label="Buscar poema o autor">
         </label>
-        <select id="categoryFilter" aria-label="Filtrar por categoría">
-          <option value="">Todas las categorías</option>
-          <option value="Amor">Amor</option>
-          <option value="Reflexión">Reflexión</option>
-          <option value="Naturaleza">Naturaleza</option>
-          <option value="Nostalgia">Nostalgia</option>
-          <option value="Esperanza">Esperanza</option>
-          <option value="Otros">Otros</option>
-        </select>
+        <label class="filter-select">
+          <span class="sr-only">Filtrar por categoría</span>
+          <select id="categoryFilter">
+            <option value="">Todas las categorías</option>
+            <option value="Amor">Amor</option>
+            <option value="Vida">Vida</option>
+            <option value="Tristeza">Tristeza</option>
+            <option value="Naturaleza">Naturaleza</option>
+            <option value="Esperanza">Esperanza</option>
+            <option value="Otros">Otros</option>
+          </select>
+        </label>
       </div>
 
+      <p class="status-message" id="loadMessage" role="status">Cargando poemas...</p>
       <div class="poem-grid" id="poemGrid"></div>
-      <p class="empty-state hidden" id="emptyPoems">
-        No encontramos poemas con esos criterios. Prueba otra búsqueda.
-      </p>
+
+      <div class="empty-state" id="emptyPoems" hidden>
+        <span class="empty-icon">✧</span>
+        <h3>Aún no encontramos esos versos</h3>
+        <p>Prueba otra búsqueda o comparte tu primer poema con la comunidad.</p>
+        <a class="button button-primary" href="#publicar">Compartir un poema</a>
+      </div>
     </section>
 
-    <section class="author-section" id="autores">
-      <div class="section">
+    <section class="authors-section" id="autores">
+      <div class="container section">
         <div class="section-heading">
           <div>
-            <span class="eyebrow">QUIENES DAN VIDA A LAS PALABRAS</span>
-            <h2>Detrás de cada verso,<br>hay <em>una historia.</em></h2>
-            <p>Conoce a los escritores y descubre sus universos literarios.</p>
+            <p class="eyebrow">QUIENES DAN VIDA A LOS VERSOS</p>
+            <h2>Conoce a nuestros <em>autores</em></h2>
+            <p class="section-description">Cada persona tiene una historia que contar.</p>
           </div>
-          <span class="author-count" id="authorCount">0 autores</span>
+          <span class="author-counter" id="authorCount">0 autores</span>
         </div>
         <div class="author-grid" id="authorGrid"></div>
-      </div>
-    </section>
-
-    <section class="author-profile section hidden" id="authorProfile">
-      <button class="back-link" id="backToAuthors">← Volver a todos los autores</button>
-      <div id="authorProfileContent"></div>
-    </section>
-
-    <section class="section library-section" id="biblioteca">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">ENCUENTRA TU PRÓXIMA LECTURA</span>
-          <h2>Explora por <em>emociones.</em></h2>
-          <p>Elige lo que quieres sentir, recordar o descubrir hoy.</p>
-        </div>
-      </div>
-      <div class="category-grid">
-        <button class="category-card category-love" data-category="Amor">
-          <span>♡</span><strong>Amor</strong><small>Lo que sentimos</small><b>↗</b>
-        </button>
-        <button class="category-card category-thought" data-category="Reflexión">
-          <span>☼</span><strong>Reflexión</strong><small>Lo que aprendemos</small><b>↗</b>
-        </button>
-        <button class="category-card category-nature" data-category="Naturaleza">
-          <span>❋</span><strong>Naturaleza</strong><small>Lo que nos rodea</small><b>↗</b>
-        </button>
-        <button class="category-card category-hope" data-category="Esperanza">
-          <span>✧</span><strong>Esperanza</strong><small>Lo que está por venir</small><b>↗</b>
-        </button>
+        <p class="muted-note">Los autores aparecen aquí cuando sus poemas han sido publicados.</p>
       </div>
     </section>
 
     <section class="publish-section" id="publicar">
-      <div class="publish-intro">
-        <span class="eyebrow eyebrow-light">TU VOZ TAMBIÉN IMPORTA</span>
-        <h2>El mundo merece<br>leer <em>tus palabras.</em></h2>
-        <p>No necesitas ser un escritor famoso para compartir lo que sientes.
-          Cada historia merece encontrar a su lector.</p>
-        <div class="publish-points">
-          <p>✳ Comparte tu creatividad</p>
-          <p>✳ Presenta tus poemas con imágenes</p>
-          <p>✳ Construye tu espacio como autor</p>
+      <div class="container publish-layout">
+        <div class="publish-intro">
+          <p class="eyebrow">TU VOZ TAMBIÉN IMPORTA</p>
+          <h2>Tu historia merece un lugar <em>en el mundo.</em></h2>
+          <p>Escribe lo que llevas dentro. Comparte tus versos con otros lectores y deja que tus palabras encuentren su camino.</p>
+          <div class="publish-quote">
+            <span class="quote-mark">“</span>
+            <p>Un poema puede decir en unas líneas lo que el corazón guarda durante años.</p>
+          </div>
         </div>
+
+        <form class="publish-form" id="poemForm">
+          <h3>Comparte tu poema</h3>
+          <p class="form-description">Completa los datos para enviarlo a revisión.</p>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="authorName">Nombre del autor *</label>
+              <input id="authorName" name="authorName" type="text" maxlength="60" required placeholder="Tu nombre">
+            </div>
+            <div class="form-field">
+              <label for="poemTitle">Título del poema *</label>
+              <input id="poemTitle" name="poemTitle" type="text" maxlength="100" required placeholder="El título de tu obra">
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="authorBio">Sobre el autor</label>
+            <input id="authorBio" name="authorBio" type="text" maxlength="250" placeholder="Una breve presentación (opcional)">
+          </div>
+
+          <div class="form-field">
+            <label for="poemCategory">Categoría *</label>
+            <select id="poemCategory" name="poemCategory" required>
+              <option value="Amor">Amor</option>
+              <option value="Vida">Vida</option>
+              <option value="Tristeza">Tristeza</option>
+              <option value="Naturaleza">Naturaleza</option>
+              <option value="Esperanza">Esperanza</option>
+              <option value="Otros">Otros</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="poemText">Tu poema *</label>
+            <textarea id="poemText" name="poemText" rows="8" maxlength="10000" required placeholder="Escribe aquí tus versos..."></textarea>
+            <span class="field-hint">Máximo 10 000 caracteres.</span>
+          </div>
+
+          <div class="form-field">
+            <label for="poemImage">Imagen para acompañar tu poema (opcional)</label>
+            <label class="upload-area" for="poemImage">
+              <span class="upload-icon">＋</span>
+              <span><strong>Seleccionar imagen</strong><small>JPG, PNG o WEBP · Máximo 2 MB</small></span>
+            </label>
+            <input class="sr-only" id="poemImage" name="poemImage" type="file" accept="image/jpeg,image/png,image/webp">
+            <div class="image-preview" id="imagePreview" hidden>
+              <img id="previewImage" alt="Vista previa de la imagen seleccionada">
+              <button type="button" id="removeImage" class="remove-image">Quitar imagen</button>
+            </div>
+          </div>
+
+          <label class="rights-check">
+            <input type="checkbox" id="confirmRights" required>
+            <span>Confirmo que este poema es mío o que tengo permiso para compartirlo.</span>
+          </label>
+
+          <button class="button button-primary submit-button" id="submitButton" type="submit">
+            Enviar poema <span>↗</span>
+          </button>
+          <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+          <p class="privacy-note">Tu poema será revisado antes de aparecer públicamente. No incluyas información personal privada.</p>
+        </form>
       </div>
-
-      <form class="publish-form" id="poemForm">
-        <div class="form-heading">
-          <h3>Publica tu poema</h3>
-          <p>Completa los datos para crear tu publicación.</p>
-        </div>
-
-        <label for="authorName">Nombre del autor *</label>
-        <input id="authorName" name="authorName" required maxlength="60"
-          placeholder="Tu nombre o seudónimo">
-
-        <label for="authorBio">Breve biografía</label>
-        <textarea id="authorBio" name="authorBio" rows="2" maxlength="300"
-          placeholder="Cuéntanos algo sobre ti como escritor"></textarea>
-
-        <label for="poemTitle">Título del poema *</label>
-        <input id="poemTitle" name="poemTitle" required maxlength="100"
-          placeholder="¿Cómo se llama tu poema?">
-
-        <label for="poemCategory">Categoría *</label>
-        <select id="poemCategory" name="poemCategory" required>
-          <option value="">Selecciona una categoría</option>
-          <option>Amor</option>
-          <option>Reflexión</option>
-          <option>Naturaleza</option>
-          <option>Nostalgia</option>
-          <option>Esperanza</option>
-          <option>Otros</option>
-        </select>
-
-        <label for="poemText">Tu poema *</label>
-        <textarea id="poemText" name="poemText" required rows="7" maxlength="10000"
-          placeholder="Escribe tus versos aquí..."></textarea>
-
-        <label for="poemImage">Imagen para acompañar el poema</label>
-        <label class="upload-box" for="poemImage">
-          <span class="upload-icon">＋</span>
-          <span><strong>Selecciona una imagen</strong>
-          <small>JPG, PNG o WebP · Máximo 2 MB</small></span>
-        </label>
-        <input class="file-input" id="poemImage" type="file"
-          accept="image/jpeg,image/png,image/webp">
-        <div class="image-preview hidden" id="imagePreviewWrap">
-          <img id="imagePreview" alt="Vista previa de la imagen del poema">
-          <button type="button" id="removeImage" class="remove-image">Quitar imagen</button>
-        </div>
-
-        <label class="consent">
-          <input type="checkbox" id="confirmRights" required>
-          <span>Confirmo que mi poema es mío o que tengo permiso para publicarlo,
-            y que puedo compartir la imagen seleccionada.</span>
-        </label>
-
-        <button class="button button-primary submit-button" type="submit">
-          Publicar poema <span>↗</span>
-        </button>
-        <p class="form-notice" id="formMessage" role="status" aria-live="polite"></p>
-        <p class="local-notice">Versión de demostración: las publicaciones se guardan
-          únicamente en este navegador.</p>
-      </form>
-    </section>
-
-    <section class="closing-quote">
-      <span>✳</span>
-      <p>“Escribir es encontrar un hogar<br>para aquello que sentimos.”</p>
-      <small>UN ESPACIO PARA CADA VOZ</small>
     </section>
   </main>
 
-  <footer class="footer">
-    <a href="#inicio" class="logo footer-logo">
-      <span class="logo-icon">V.</span><span>versos<span class="logo-dot">.</span></span>
-    </a>
-    <p>Un universo de palabras, creado para compartir.</p>
-    <div class="footer-links">
-      <a href="#poemas">Poemas</a>
-      <a href="#autores">Autores</a>
-      <a href="#publicar">Publicar</a>
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <a class="brand footer-brand" href="#inicio"><span class="brand-icon">V.</span> Versos</a>
+      <p>Un espacio para las palabras que nacen del corazón.</p>
+      <a href="#inicio" class="back-top">Volver arriba ↑</a>
     </div>
-    <small>© <span id="currentYear"></span> Versos. Una comunidad literaria.</small>
+    <div class="container footer-bottom">
+      <span>© <span id="currentYear"></span> Versos. Comunidad de poesía.</span>
+      <span>Hecho para quienes aman escribir.</span>
+    </div>
   </footer>
 
-  <dialog class="reading-dialog" id="readingDialog">
-    <button class="dialog-close" id="closeDialog" aria-label="Cerrar">×</button>
-    <div id="readingContent"></div>
+  <dialog id="readingDialog" class="reading-dialog">
+    <button class="dialog-close" id="closeDialog" type="button" aria-label="Cerrar poema">×</button>
+    <div id="dialogContent"></div>
   </dialog>
 </body>
 </html>
